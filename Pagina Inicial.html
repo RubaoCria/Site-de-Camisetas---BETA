@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Roupas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <header>
+            <p class="parte-de-cima">
+                <span>FRETE GRÁTIS ACIMA DE R$ 399</span>
+            </p>
+            
+            <div class="menu-container">
+                <a href="Pagina Inicial.html">
+                    <img src="Imagens/Logo.svg" alt="Logo ou Ícone" />
+                </a>
+                
+                <ul class="lista-menu" role="list">
+                    <li><a href="https://hurley.com.br/collections/masculino">MASCULINO</a></li>
+                    <li><a href="#">FEMININO</a></li>
+                    <li><a href="#">WETSUITS</a></li>
+                    <li><a href="#">ACESSÓRIOS</a></li>
+                    <li><a href="#">COLEÇÕES</a></li>
+                    <li><a class="black-friday" href="#">BLACK FRIDAY</a></li>
+                </ul>
+            </div>
+            
+            <hr class="linha">
+        </header>
+    </section>
+
+    <!-- Carrossel -->
+    <section class="carrossel-container">
+        <div class="carrossel">
+            <!-- Imagens do carrossel -->
+            <div class="carrossel-imagem">
+                <img src="https://images.pexels.com/photos/7195248/pexels-photo-7195248.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Imagem 1">
+            </div>
+            <div class="carrossel-imagem">
+                <img src="https://images.pexels.com/photos/7594233/pexels-photo-7594233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Imagem 2">
+            </div>
+            <div class="carrossel-imagem">
+                <img src="https://images.pexels.com/photos/9052846/pexels-photo-9052846.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Imagem 3">
+            </div>
+        </div>
+
+        <!-- Bolinhas de navegação -->
+        <div class="indicadores">
+            <span class="bolinha" data-index="0"></span>
+            <span class="bolinha" data-index="1"></span>
+            <span class="bolinha" data-index="2"></span>
+        </div>
+    </section>
+
+    <script>
+        let index = 0; // Índice da imagem atual
+        const imagens = document.querySelectorAll('.carrossel-imagem');
+        const bolinhas = document.querySelectorAll('.bolinha');
+        const totalImagens = imagens.length;
+
+        // Função para mudar a imagem
+        function mudarImagem() {
+            // Calcula a posição da imagem (deslocamento)
+            const deslocamento = -index * 100; // Desloca o carrossel de acordo com o índice
+            document.querySelector('.carrossel').style.transform = `translateX(${deslocamento}%)`;
+
+            // Atualiza a cor das bolinhas
+            bolinhas.forEach((bolinha, i) => {
+                if (i === index) {
+                    bolinha.classList.add('ativa');
+                } else {
+                    bolinha.classList.remove('ativa');
+                }
+            });
+        }
+
+        // Função para navegar para a imagem correspondente ao clicar na bolinha
+        function irParaImagem(event) {
+            index = parseInt(event.target.getAttribute('data-index'));
+            mudarImagem();
+        }
+
+        // Adiciona o evento de clique nas bolinhas
+        bolinhas.forEach(bolinha => {
+            bolinha.addEventListener('click', irParaImagem);
+        });
+
+        // Inicializa a posição do carrossel
+        mudarImagem();
+    </script>
+</body>
+</html>
